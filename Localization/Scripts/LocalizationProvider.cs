@@ -8,6 +8,8 @@ public abstract class LocalizationProvider<T> : ScriptableObject, ILocalizationP
     public bool TryGetValue(string key, int index, out T value)
     {
         value = default;
+        if (key == string.Empty || key == null)
+            return false;
         var container = Localization.FirstOrDefault(x => x.Key.ToLower() == key.ToLower());
         if (container != null)
         {
