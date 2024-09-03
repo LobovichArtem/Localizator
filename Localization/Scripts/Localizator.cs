@@ -35,7 +35,7 @@ public class Localizator : MonoBehaviour
             ChangeValue();
             return;
         }
-
+        Localization.ChangeLanguage -= ChangeValue;
         DestroyImmediate(this);
         throw new Exception("This component that can be used for translation was not found (needed AudioSource, Text)");        
     }
@@ -93,7 +93,8 @@ public class Localizator : MonoBehaviour
 //    //    {
 //    //        _instance = this;
 //    //        DontDestroyOnLoad(gameObject);
-//    //    }
+//    //    }
+
 //    //}
 //    #endregion
 
