@@ -45,10 +45,11 @@ public class Localization
                 break;
         }
     }
+    
+    public static string GetStringToKey(string key) => GetString(key);
 
-    public static string GetValueToKey(string key) => GetString(key);
-
-
+    public static AudioClip GetAudioClipToKey(string key) => GetAudioClip(key);
+    
     private static void Load()
     {
         var s = Resources.LoadAll("", typeof(ILocalizationProvider));
