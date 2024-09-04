@@ -1,15 +1,6 @@
 using System;
 using UnityEngine;
 
-
-public enum LanguageCode
-{
-    English = 0,
-    Russian,
-    Polish,
-    Lithuanian
-}
-
 public class Language : MonoBehaviour
 {
     [SerializeField] private LanguageCode _language;
