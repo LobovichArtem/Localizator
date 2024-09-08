@@ -3,8 +3,8 @@ using UnityEngine;
 
 public class Language : MonoBehaviour
 {
-    [SerializeField] private LanguageCode _language;
-
+    [SerializeField] private Text _currentLanguageCode; 
+    
     private void Awake()
     {
         SetLanguage(LoadLanguageCode);
@@ -16,8 +16,18 @@ public class Language : MonoBehaviour
             throw new Exception("Invalid language code value.The value is greater than the enum languageCode");
 
         Localization.SetLanguage((LanguageCode)code);
-        _language = (LanguageCode)code;
         SaveLanguageCode(code);
+        
+        DisplayCurrentLanguage();    
+    }
+
+    public void SwitchLanguage()
+    {
+        var code = Localization.GetLanguage;
+        code++;
+        if (code >= Enum.GetValues(typeof(LanguageCode)).Length)
+            code = 0;
+        SetLanguage(code);
     }
 
     [ContextMenu("UpdateFiles")]
@@ -26,19 +36,14 @@ public class Language : MonoBehaviour
         Localization.UpdateResources();
     }
 
+    public void DisplayCurrentLanguage()
+    {
+        if(_currentLanguageCode != null) 
+            _currentLanguageCode.text = Localization.Language.ToString();    
+    }
+
     [ContextMenu("SaveCurrentLanguage")]
     public void SaveLanguageCode() => SaveLanguageCode(_language.GetHashCode());
-
-    //private void OnValidate()
-    //{
-    //    Debug.Log(GetType());
-    //    if (_language.GetHashCode() != LoadLanguageCode)
-    //    {
-    //        int code = _language.GetHashCode();
-    //        SaveLanguageCode(code);
-    //        SetLanguage(code);
-    //    }
-    //}
 
     private int LoadLanguageCode => PlayerPrefs.GetInt("languagecode", 0);
 
