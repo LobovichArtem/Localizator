@@ -22,6 +22,8 @@ public class Localization
 
     public static void SetLanguage(LanguageCode language)
     {
+        if (_isLoad == false)
+            Load();
         Debug.Log($"Language set {language}");
         _language = language;
         ChangeLanguage?.Invoke();
