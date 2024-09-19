@@ -1,6 +1,6 @@
 using System;
 using UnityEngine;
-using UNityEngine.UI;
+using UnityEngine.UI;
 
 public class Language : MonoBehaviour
 {
